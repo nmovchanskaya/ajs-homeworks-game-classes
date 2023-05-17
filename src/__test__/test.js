@@ -1,4 +1,10 @@
 import Character from '../character.js';
+import Bowman from '../bowman.js';
+import Magician from '../magician.js';
+import Swordsman from '../swordsman.js';
+import Daemon from '../daemon.js';
+import Undead from '../undead.js';
+import Zombie from '../zombie.js';
 
 test('test too short name', () => {
   // const character = new Character('t', 'Magician');
@@ -41,50 +47,80 @@ test('test level', () => {
   expect(character.level).toBe(1);
 });
 
-test.each([
-  ['Bowman', 25],
-  ['Swordsman', 40],
-  ['Magician', 10],
-  ['Daemon', 10],
-  ['Undead', 25],
-  ['Zombie', 40],
-])(
-  ('test value of attack for %t type'),
-  (type, expected) => {
-    const character = new Character('first', type);
-    expect(character.attack).toBe(expected);
-  },
-);
+test('test Bowman', () => {
+  const hero = new Bowman('first');
+  expect(hero.attack).toBe(25);
+});
 
-test.each([
-  ['Bowman', 25],
-  ['Swordsman', 10],
-  ['Magician', 40],
-  ['Daemon', 40],
-  ['Undead', 25],
-  ['Zombie', 10],
-])(
-  ('test value of defence for %t type'),
-  (type, expected) => {
-    const character = new Character('first', type);
-    expect(character.defence).toBe(expected);
-  },
-);
+test('test Bowman', () => {
+  const hero = new Bowman('first');
+  expect(hero.defence).toBe(25);
+});
+
+test('test Swordsman', () => {
+  const hero = new Swordsman('first');
+  expect(hero.attack).toBe(40);
+});
+
+test('test Swordsman', () => {
+  const hero = new Swordsman('first');
+  expect(hero.defence).toBe(10);
+});
+
+test('test Magician', () => {
+  const hero = new Magician('first');
+  expect(hero.attack).toBe(10);
+});
+
+test('test Magician', () => {
+  const hero = new Magician('first');
+  expect(hero.defence).toBe(40);
+});
+
+test('test Daemon', () => {
+  const hero = new Daemon('first');
+  expect(hero.attack).toBe(10);
+});
+
+test('test Daemon', () => {
+  const hero = new Daemon('first');
+  expect(hero.defence).toBe(40);
+});
+
+test('test Undead', () => {
+  const hero = new Undead('first');
+  expect(hero.attack).toBe(25);
+});
+
+test('test Undead', () => {
+  const hero = new Undead('first');
+  expect(hero.defence).toBe(25);
+});
+
+test('test Zombie', () => {
+  const hero = new Zombie('first');
+  expect(hero.attack).toBe(40);
+});
+
+test('test Zombie', () => {
+  const hero = new Zombie('first');
+  expect(hero.defence).toBe(10);
+});
 
 test('test level up', () => {
-  const character = new Character('first', 'Magician');
+  const character = new Bowman('first');
   character.levelUp();
   expect(character.level).toBe(2);
 });
 
 test('test level up defence', () => {
-  const character = new Character('first', 'Magician');
+  const character = new Magician('first');
   character.levelUp();
   expect(character.defence).toBe(48);
 });
 
 test('test level up attack', () => {
-  const character = new Character('first', 'Magician');
+  const character = new Magician('first');
   character.levelUp();
   expect(character.attack).toBe(12);
 });
@@ -105,7 +141,7 @@ test('test level up for dead', () => {
 });
 
 test('test damage', () => {
-  const character = new Character('first', 'Magician');
+  const character = new Magician('first');
   character.damage(20);
   expect(character.health).toBe(88);
 });
